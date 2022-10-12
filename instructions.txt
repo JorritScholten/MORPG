@@ -1,3 +1,11 @@
+// Practice OO
+// Object oriented programming can be a hard technique to demonstrate, especially to people used to writing smallish
+// programs (say Python scripts). In my experience, code that achieves enough complexity to make OO really worthwhile
+// is easily 150 to 200 lines (recent examples being a hotkey training program and a C# line counter with nasty
+// persistent bugs till I rewrote critical sections with OO). Possibly OO could be done in shorter code and that I
+// simply have not had the originality yet to think of a proper assignment. However, below example should be reasonably
+// simple to try to get a taste of the power of Object Orientation!
+
 Miniature Offline Role Playing Game
 
 Make a game with a player.
