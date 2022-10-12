@@ -31,3 +31,28 @@ character takes damage that reduces them to (or below) 0 hit points, a message i
 Any loop can end by checking the "isAlive()" property. Also note that a dead character cannot hit back.
 
 // you should now have at least two classes and about 50 lines of code.
+// So far you have perhaps seen the usefulness of bundling data with methods, but clearly there was little true OO
+// behavior: after all, Player and orc only differed in field values (hit points, weapon type, and name) but not in
+// behavior. However, you may already see some reasons for that to change, for example that
+// "Player gets hit by orc and drops to 37 hit points!" and "orc hits Player with his axe for 1 hit points!" is not
+// really proper English. But we can fix that!
+
+5. Let's first make everything proper English. Obviously, there are player characters with names (that start with a
+capital letter) and monster characters that only have a species (they of course may have names for their friends and
+family, but we dungeoneering heroes don't care about that stuff). Let's make two subclasses of Character, namely Player
+and Creature. Then we will make Character abstract, to ensure only a useful being can be made.
+
+6. This is better. It would be nice though if all sentences would start with capital letters. Let's make a utility
+class World with a static method message that capitalizes the first letter of each sentence. Replace the
+System.out.printlns by the World.message (except in the World class, of course!)
+
+6. Of course, a player may be called something like "Carl", and an orc will be "the orc". Lets do two things: let make
+the constructor of Player and Creature throw an exception if they don't start with an uppercase and lowercase,
+respectively. Second, let's change the getName() function to return "the " + name in the case of a creature. Also,
+I'm only noticing now that Character is also a Java class-better rename it to Being?
+
+// All right: you have some inheritance now, an abstract class, and a utility class. And you should have about 100 lines
+// of code now. Of course, the inheritance seems yet trivial -why not set a boolean isMonster to decide whether to
+// put 'the' in front of the name? However, inheritance (and the game) becomes much more interesting once classes
+// don't simply have different data, but also different behaviors...
+
