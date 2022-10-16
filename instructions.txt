@@ -107,6 +107,36 @@ both the EnemyGroup and Being implement it.
 // techniques of object-oriented programming. If you got this far, congratulations! Of course, there are still some
 // niggles with the program, if you also want to solve (some of) those, please check out the bonus material!
 
+B1. Look at the current output:
+Carl encounters the group of 2 zombies.
+Carl hits the zombie with his sword for 2 hit points!
+// this sounds weird! It should be Carl encounters A group of 2 zombies, and "Carl hits a zombie"...
+replace getName() by getDefiniteName() and getIndefiniteName() (both will give the same result for Carl)
+
+B2. OK, making the getDefiniteName() and getIndefiniteName() works quite well:
+Carl encounters a group of 4 orcs.
+Carl hits an orc with his sword for 5 hit points!
+I still see a bug, though...
+
+"Carl gets hit by an orc and drops to 0 hit points!
+Carl dies!
+An orc hits Carl with his axe for 1 hit points!
+Carl gets hit by an orc and drops to -1 hit points!
+Carl dies!
+An orc hits Carl with his axe for 2 hit points!
+Carl gets hit by an orc and drops to -3 hit points!
+Carl dies!"
+
+I fix that as well.
+
+// I now have about 300 lines and a decently working program. The big problem is that the player has basically no
+// control over stuff; he randomly hits enemies, which is a rather stupid strategy. Also he cannot run. And - you can't
+// even choose his name! Still, we now have a working functional core with some pretty advanced stuff as well, so you
+// can be very proud if you got here!
+
+
+
+
 
 
 

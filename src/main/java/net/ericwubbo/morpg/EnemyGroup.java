@@ -12,7 +12,11 @@ public class EnemyGroup implements Named {
     Random rand = new Random();
 
     public EnemyGroup(int numCreatures, Supplier<Creature> creatureMaker) {
-        for (int i = 0; i < numCreatures; i++) enemies.add(creatureMaker.get());
+        for (int i = 0; i < numCreatures; i++)  {
+            Creature newEnemy = creatureMaker.get();
+            newEnemy.setGroupMember(numCreatures > 1);
+            enemies.add(newEnemy);
+        }
     }
 
     public Creature getRandomLivingEnemy() {
@@ -24,7 +28,10 @@ public class EnemyGroup implements Named {
     public void hit(Being player) {
         int numEnemiesRemaining = enemies.size();
         if (numEnemiesRemaining == 0) throw new RuntimeException("No enemy is alive anymore!");
-        for (Creature enemy : enemies) enemy.hit(player);
+        for (Creature enemy : enemies) {
+            enemy.hit(player);
+            if (!player.isAlive()) break;
+        }
     }
 
     public boolean isAlive() {
@@ -34,13 +41,21 @@ public class EnemyGroup implements Named {
                 i--;
             }
         }
+        if (enemies.size() == 1) enemies.get(0).setGroupMember(false);
         return enemies.size() > 0;
     }
 
     @Override
-    public String getName() {
+    public String getDefiniteName() {
         int groupSize = enemies.size();
-        if (groupSize == 1) return enemies.get(0).getName();
+        if (groupSize == 1) return enemies.get(0).getDefiniteName();
         else return "the group of " + groupSize + " " + enemies.get(0).name + "s";
+    }
+
+    @Override
+    public String getIndefiniteName() {
+        int groupSize = enemies.size();
+        if (groupSize == 1) return enemies.get(0).getIndefiniteName();
+        else return "a group of " + groupSize + " " + enemies.get(0).name + "s";
     }
 }

@@ -1,5 +1,6 @@
 package net.ericwubbo.morpg;
 
 public interface Named {
-    String getName();
+    String getDefiniteName();
+    String getIndefiniteName();
 }

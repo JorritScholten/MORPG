@@ -14,13 +14,13 @@ public class Program {
     public static void main(String[] args) {
         Being player = new Player("Carl", 50, new Weapon("sword", 6));
         EnemyGroup enemyGroup = getEnemies();
-        World.message(player.name + " encounters " + enemyGroup.getName() + ".");
+        World.message(player.name + " encounters " + enemyGroup.getIndefiniteName() + ".");
         do {
             if (player.isAlive()) player.hit(enemyGroup.getRandomLivingEnemy());
             if (enemyGroup.isAlive()) enemyGroup.hit(player);
         } while (player.isAlive() && enemyGroup.isAlive());
         var survivor = player.isAlive() ? player : enemyGroup;
-        World.message(survivor.getName() + " has been victorious!");
+        World.message(survivor.getDefiniteName() + " has been victorious!");
     }
 
     public static EnemyGroup getEnemies() {

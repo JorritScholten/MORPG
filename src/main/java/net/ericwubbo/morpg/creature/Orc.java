@@ -23,9 +23,15 @@ public class Orc extends Creature {
     }
 
     @Override
-    public String getName() {
+    public String getDefiniteName() {
         String enragedText = isEnraged() ? "enraged " : "";
         return "the " + enragedText + "orc";
+    }
+
+    @Override
+    public String getIndefiniteName() {
+        String enragedText = isEnraged() ? "enraged " : "";
+        return "an " + enragedText + "orc";
     }
 
     @Override protected void updateStatus(int damage, Being enemy) {

@@ -5,9 +5,9 @@ abstract public class Being implements Named {
     protected int hitPoints;
     protected final Weapon weapon;
 
-    public String getName() {
-        return name;
-    }
+    abstract public String getDefiniteName();
+
+    abstract public String getIndefiniteName();
 
     protected Being(String name, int hitPoints, Weapon weapon) {
         this.weapon = weapon;
@@ -17,6 +17,10 @@ abstract public class Being implements Named {
 
     protected int getDamage() {
         return weapon.getDamage();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void hit(Being enemy) {
