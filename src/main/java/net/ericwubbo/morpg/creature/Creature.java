@@ -22,15 +22,19 @@ public abstract class Creature extends Being {
         return isGroupMember ? getIndefiniteName() : getDefiniteName();
     }
 
+    protected boolean isNamed() {
+        return name.split(" ").length==2;
+    }
+
     @Override
     public String getDefiniteName() {
-        if (name.split(" ").length==2) return name;
+        if (isNamed()) return name;
         return "the " + name;
     }
 
     @Override
     public String getIndefiniteName() {
-        if (name.split(" ").length==2) return name;
+        if (isNamed()) return name;
         String article = "aeiou".contains(name.substring(0, 1)) ? "an" : "a";
         return article + " " + name;
     }

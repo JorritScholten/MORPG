@@ -45,12 +45,14 @@ public class Orc extends Creature {
     @Override
     public String getDefiniteName() {
         String enragedText = isEnraged() ? "enraged " : "";
+        if (isNamed()) return enragedText + name;
         return "the " + enragedText + "orc";
     }
 
     @Override
     public String getIndefiniteName() {
         String enragedText = isEnraged() ? "enraged " : "";
+        if (isNamed()) return enragedText + name;
         return "an " + enragedText + "orc";
     }
 
