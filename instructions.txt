@@ -46,7 +46,7 @@ and Creature. Then we will make Character abstract, to ensure only a useful bein
 class World with a static method message that capitalizes the first letter of each sentence. Replace the
 System.out.printlns by the World.message (except in the World class, of course!)
 
-6. Of course, a player may be called something like "Carl", and an orc will be "the orc". Lets do two things: let make
+7. Of course, a player may be called something like "Carl", and an orc will be "the orc". Lets do two things: let make
 the constructor of Player and Creature throw an exception if they don't start with an uppercase and lowercase,
 respectively. Second, let's change the getName() function to return "the " + name in the case of a creature. Also,
 I'm only noticing now that Character is also a Java class-better rename it to Being?
@@ -55,4 +55,28 @@ I'm only noticing now that Character is also a Java class-better rename it to Be
 // of code now. Of course, the inheritance seems yet trivial -why not set a boolean isMonster to decide whether to
 // put 'the' in front of the name? However, inheritance (and the game) becomes much more interesting once classes
 // don't simply have different data, but also different behaviors...
+
+8. Enemies may have abilities. For example, if the orc's health drops to 30% or lower, he will enrage, doubling his
+damage. So that you do not put things in Creature class that will not other creatures, make a new class Orc, and two
+other classes (Kobold and Zombie - for later purposes). Anyway, define the Orc, Kobold and Zombie classes, copy the
+hit-method to the Orc class, giving it the annotation @Override to indicate that it overrides the original, and adjust
+the code to work (for example by checking that hitPoints is protected, not private). Orc also needs to get a
+maxHitPoints to check for the enrage condition. Perhaps also override getName to print "the enraged orc hits..."
+And don't forget (like I did) to change the new Creature() to new Orc()...
+
+9. Of course, the output can be nicer; it would be nicer if the orc gives some indication of when it enrages (fix that!)
+
+10. As I'm getting more types of enemies now, it may be the time to make a new package (in this case a
+net.ericwubbo.morpg.creature package) to house the creature, orc, kobold and zombie. I do need to make the World.message
+method public, but then it runs again.
+
+11. Since I was bitten by the bug of forgetting to rename new Creature to new Orc, I want to avoid such mistakes in the
+future. I make the Creature class abstract, so I can't use new Creature(...) anymore, and let the orc constructor
+not require the string "orc" anymore- I just pass that to the Creature constructor.
+
+// So this is the first behavior, with some @Override and some abstract. You should have about 150 lines of code now,
+// but we can still go deeper. Likely (like me), you've copy-pasted methods from the Creature class to Orc; let's now
+// try make this more maintainable and shorter.
+
+
 

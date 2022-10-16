@@ -2,8 +2,8 @@ package net.ericwubbo.morpg;
 
 abstract public class Being {
     protected final String name;
-    private int hitPoints;
-    private final Weapon weapon;
+    protected int hitPoints;
+    protected final Weapon weapon;
 
     public String getName() {
         return name;
@@ -23,7 +23,7 @@ abstract public class Being {
         enemy.getWounded(damage, this);
     }
 
-    private void getWounded(int damage, Being enemy) {
+    public void getWounded(int damage, Being enemy) {
         hitPoints -= damage;
         World.message(getName()  + " gets hit by " + enemy.getName()  + " and drops to " + hitPoints + " hit points!");
         if (hitPoints <= 0)  World.message(getName()  + " dies!");

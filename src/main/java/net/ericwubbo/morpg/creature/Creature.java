@@ -1,6 +1,9 @@
-package net.ericwubbo.morpg;
+package net.ericwubbo.morpg.creature;
 
-public class Creature extends Being {
+import net.ericwubbo.morpg.Being;
+import net.ericwubbo.morpg.Weapon;
+
+public abstract class Creature extends Being {
     public Creature(String species, int hitPoints, Weapon weapon) {
         super(species, hitPoints, weapon);
         if (!Character.isLowerCase(species.charAt(0)))
