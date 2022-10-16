@@ -1,6 +1,6 @@
 package net.ericwubbo.morpg;
 
-abstract public class Being {
+abstract public class Being implements Named {
     protected final String name;
     protected int hitPoints;
     protected final Weapon weapon;
@@ -15,18 +15,26 @@ abstract public class Being {
         this.hitPoints = hitPoints;
     }
 
+    protected int getDamage() {
+        return weapon.getDamage();
+    }
+
     public void hit(Being enemy) {
         if (hitPoints <= 0) throw new RuntimeException(getName()  + " is dead!");
-        int damage = weapon.getDamage();
+        int damage = getDamage();
         World.message(getName() + " hits " + enemy.getName() + " with his " + weapon.getName() + " for "
                 + damage + " hit points!");
         enemy.getWounded(damage, this);
     }
 
     public void getWounded(int damage, Being enemy) {
+        updateStatus(damage, enemy);
+        if (hitPoints <= 0)  World.message(getName()  + " dies!");
+    }
+
+    protected void updateStatus(int damage, Being enemy) {
         hitPoints -= damage;
         World.message(getName()  + " gets hit by " + enemy.getName()  + " and drops to " + hitPoints + " hit points!");
-        if (hitPoints <= 0)  World.message(getName()  + " dies!");
     }
 
     public boolean isAlive() {

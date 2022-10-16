@@ -11,7 +11,7 @@ Miniature Offline Role Playing Game
 Make a game with a player.
 The player is has 50 hitpoints
 
-There is an orc, which has 20 hitpoints
+There is an orc, which has 20 hit points
 
 1. Implement the player and the orc. Hint: you could make a class "Character", and create one of each in the main
 program
@@ -77,6 +77,39 @@ not require the string "orc" anymore- I just pass that to the Creature construct
 // So this is the first behavior, with some @Override and some abstract. You should have about 150 lines of code now,
 // but we can still go deeper. Likely (like me), you've copy-pasted methods from the Creature class to Orc; let's now
 // try make this more maintainable and shorter.
+
+12. Let's first undo some code duplication. The Orc version of hit is almost the same as the Being-version, the
+only difference is the damage. Let's create a getDamage() method in Being and let Orc override it. For getWounded it's
+harder to extract duplicate logic, we can make an updateStatus() method to deduplicate the "dies" output...
+
+13. Encapsulation is one advantage of object-oriented programming. Why would one need to micromanage (in Program.java)
+that an orc has an axe? Can't the Orc class itself decide that? We will now change the constructors for Orc, Zombie and
+Kobold to set their names automatically to the correct values, set hitpoints to 20, 30 and 15, and make their weapons an
+axe (max damage 3), hands (max damage 2), and mining pick (max damage 4).
+
+14. I change the line Being orc = new Orc(); into Creature monster = new Orc(); renaming the orc, and then try swap
+the orc for the kobold and the zombie. Or better: use Random.next(3) to choose an opponent!
+
+15. Of course, Carl now almost always wins. The game gets boring. Let's make it a bit more exciting! We can now make
+a group of enemies (1-4). For now: all of the same type. Make a method in Program to generate a group of 1-4 of the
+same random enemy type (like 3 zombies). Perhaps make it an ArrayList (array can also work). But I am quickly seeing
+that this can quickly become a mess (which enemy should Carl hit?) I'd better make an EnemyGroup class... Doing stuff
+with such a class and constructors is also a pain, but I can work with EnemyGroup enemyGroup =
+new EnemyGroup(3, Orc::new); and public class EnemyGroup {
+    public EnemyGroup(int numCreatures, Supplier<Creature> creatureMaker)
+
+Anyway, while the programming is a bit tricky in spots, I am seeing that my survivor code must change: of course an
+EnemyGroup is not a creature, but it still has a name! Perhaps I should put getName in an interface (Nameable), and let
+both the EnemyGroup and Being implement it.
+
+// All right.. now I have about 250 lines of code, an interface, and a bunch of methods. Hopefully IDEA helped you fix
+// some bugs, as it helped me. By all rights, this project has gone long enough and should have demonstrated some
+// techniques of object-oriented programming. If you got this far, congratulations! Of course, there are still some
+// niggles with the program, if you also want to solve (some of) those, please check out the bonus material!
+
+
+
+
 
 
 

@@ -7,8 +7,8 @@ import net.ericwubbo.morpg.World;
 public class Orc extends Creature {
     int maxHitPoints;
 
-    public Orc(int hitPoints, Weapon weapon) {
-        super("orc", hitPoints, weapon);
+    public Orc() {
+        super("orc", 20, new Weapon("axe", 3));
         maxHitPoints = hitPoints;
     }
 
@@ -16,14 +16,10 @@ public class Orc extends Creature {
         return hitPoints <= maxHitPoints * 0.3;
     }
 
-    @Override
-    public void hit(Being enemy) {
-        if (hitPoints <= 0) throw new RuntimeException(getName() + " is dead!");
-        int damage = weapon.getDamage();
+    @Override protected int getDamage() {
+        int damage = super.getDamage();
         if (isEnraged()) damage *= 2;
-        World.message(getName() + " hits " + enemy.getName() + " with his " + weapon.getName() + " for "
-                + damage + " hit points!");
-        enemy.getWounded(damage, this);
+        return damage;
     }
 
     @Override
@@ -32,8 +28,7 @@ public class Orc extends Creature {
         return "the " + enragedText + "orc";
     }
 
-    @Override
-    public void getWounded(int damage, Being enemy) {
+    @Override protected void updateStatus(int damage, Being enemy) {
         boolean startsEnraged = isEnraged();
         String preEnrageName = getName();
         hitPoints -= damage;
@@ -41,6 +36,5 @@ public class Orc extends Creature {
         World.message(preEnrageName + " gets hit by " + enemy.getName() + " and drops to " + hitPoints + " hit points!");
         boolean endsEnraged = isEnraged();
         if (startsEnraged != endsEnraged) World.message(preEnrageName + " enrages!");
-        if (hitPoints <= 0) World.message(getName() + " dies!");
     }
 }
