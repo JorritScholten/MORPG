@@ -3,26 +3,29 @@ package net.ericwubbo.morpg;
 import net.ericwubbo.morpg.creature.Creature;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public class EnemyGroup implements Named {
     List<Creature> enemies = new ArrayList<>();
     Random rand = new Random();
 
-    public EnemyGroup(int numCreatures, Supplier<Creature> creatureMaker) {
-        for (int i = 0; i < numCreatures; i++)  {
-            Creature newEnemy = creatureMaker.get();
-            newEnemy.setGroupMember(numCreatures > 1);
-            enemies.add(newEnemy);
-        }
+    public Iterator<Creature> getEnemies() {
+        return enemies.iterator();
     }
 
-    public Creature getRandomLivingEnemy() {
-        int numEnemiesRemaining = enemies.size();
-        if (numEnemiesRemaining == 0) throw new RuntimeException("No enemy is alive anymore!");
-        return enemies.get(rand.nextInt(numEnemiesRemaining));
+    public EnemyGroup(int numCreatures, Function<Integer, Creature> creatureMaker) {
+        if (numCreatures == 1) {
+            enemies.add(creatureMaker.apply(0));
+        } else {
+            for (int i = 0; i < numCreatures; i++) {
+                Creature newEnemy = creatureMaker.apply(i + 1);
+                newEnemy.setGroupMember(true);
+                enemies.add(newEnemy);
+            }
+        }
     }
 
     public void hit(Being player) {
@@ -56,6 +59,6 @@ public class EnemyGroup implements Named {
     public String getIndefiniteName() {
         int groupSize = enemies.size();
         if (groupSize == 1) return enemies.get(0).getIndefiniteName();
-        else return "a group of " + groupSize + " " + enemies.get(0).name + "s";
+        else return "a group of " + groupSize + " " + enemies.get(0).getSpecies() + "s";
     }
 }

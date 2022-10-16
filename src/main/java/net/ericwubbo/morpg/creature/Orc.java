@@ -6,10 +6,25 @@ import net.ericwubbo.morpg.World;
 
 public class Orc extends Creature {
     int maxHitPoints;
+    private static final String species = "orc";
+
+    public Orc(String name) {
+        super(name, 20, new Weapon("axe", 3));
+    }
 
     public Orc() {
-        super("orc", 20, new Weapon("axe", 3));
+        this(species);
         maxHitPoints = hitPoints;
+    }
+
+    public Orc(int number) {
+        this(species+ " " + number);
+        maxHitPoints = hitPoints;
+    }
+
+    public static Orc create(int number) {
+        if (number == 0) return new Orc();
+        else return new Orc(number);
     }
 
     private boolean isEnraged() {
@@ -20,6 +35,11 @@ public class Orc extends Creature {
         int damage = super.getDamage();
         if (isEnraged()) damage *= 2;
         return damage;
+    }
+
+    @Override
+    public String getSpecies() {
+        return species;
     }
 
     @Override

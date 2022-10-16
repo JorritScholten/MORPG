@@ -134,9 +134,72 @@ I fix that as well.
 // even choose his name! Still, we now have a working functional core with some pretty advanced stuff as well, so you
 // can be very proud if you got here!
 
+B3. Okay: first we name our intrepid hero! (Personally, I require the name to start with a capital letter. But you
+may choose differently)
 
+B4. Now let's give our hero choices: to attack one of his enemies ((s)he can choose which) or to retreat. I will make
+a method for that. I must also change my Supplier into a Function, so I can give my orcs a name (like "orc 1")
+Something like a
+"public static Orc create(int number) {
+         return new Orc(number);
+     }"
+(which is called a factory method).
+Other ways may work too, though... Just having an 1-argument constructor as well is simplest here...
 
+B5. Things work quite well, but I get text like:
+"Peter encounters a group of 3 kobold 1s.". Better make something like a getSpecies method on Creature?
 
+B6. "Claudia encounters a group of 2 zombies." Much better. But...
+"Claudia hits a zombie 1 with his sword for 3 hit points!"
+Better adjust the indefinite form as well...
+
+B7. Halfway a battle: "The zombie 2 hits Lola with his hands for 2 hit points!"
+So also the definite article...
+I also may want to ask whether the player is male or female... (a bit outdated, but may make things less weird on
+screen). Or just use "their"? Okay... I go for genders and make the last adjustments.
+
+"Please enter the hero's name: Lisa
+ Please enter the hero's gender (F(emale), M(ale), N(ot relevant): f
+ Lisa encounters a group of 4 kobolds.
+ You have 50HP. Please choose an option:
+ 1. Attack kobold 1 (15 HP).
+ 2. Attack kobold 2 (15 HP).
+ 3. Attack kobold 3 (15 HP).
+ 4. Attack kobold 4 (15 HP).
+ 5. Retreat!
+ 1
+ Lisa hits kobold 1 with her sword for 2 hit points!
+ Kobold 1 gets hit by Lisa and drops to 13 hit points!
+ Kobold 1 hits Lisa with his mining pick for 1 hit points!
+ Lisa gets hit by kobold 1 and drops to 49 hit points!
+ Kobold 2 hits Lisa with his mining pick for 2 hit points!
+ Lisa gets hit by kobold 2 and drops to 47 hit points!
+ Kobold 3 hits Lisa with his mining pick for 3 hit points!
+ Lisa gets hit by kobold 3 and drops to 44 hit points!
+ Kobold 4 hits Lisa with his mining pick for 4 hit points!
+ Lisa gets hit by kobold 4 and drops to 40 hit points!
+ You have 40HP. Please choose an option:
+ 1. Attack kobold 1 (13 HP).
+ 2. Attack kobold 2 (15 HP).
+ 3. Attack kobold 3 (15 HP).
+ 4. Attack kobold 4 (15 HP).
+ 5. Retreat!
+ 5
+ Lisa retreats ignominiously from the battlefield.
+ Her adventure is over!
+ "
+
+B8. Well... NEARLY last adjustments... some methods in Program.java have become quite long... better clean them up!
+Fortunately, IDEA helps a lot with extracting methods: just select code, press Ctrl+Alt+M, and you get much nicer
+methods!
+
+// Now I've got about 440 lines of code. So far, so good, and I should likely wrap this up. However, for those
+// interested in more explorations, there is a whole virtual world too explore. What if you introduce classes with
+// different spells and hitpoints? What if players had armor and could choose weapons, or would level up? What if
+// retreat was not the end of the game? What if the world was a big maze or dungeon, with resources and recipes so
+// more weapons and armor could be made? What if we could play it with friends on the internet? Or what if we would
+// add graphics or sound? And could save the game? Practically, the powers of programming are only limited by your
+// imagination and free time, so please enjoy the adventure you're creating!
 
 
 
