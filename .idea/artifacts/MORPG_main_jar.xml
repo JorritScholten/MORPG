@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MORPG.main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MORPG_main_jar</output-path>
+    <root id="archive" name="MORPG.main.jar">
+      <element id="module-output" name="MORPG.main" />
+    </root>
+  </artifact>
+</component>
