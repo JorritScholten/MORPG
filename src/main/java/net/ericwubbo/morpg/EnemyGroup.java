@@ -52,7 +52,7 @@ public class EnemyGroup implements Named {
     public String getDefiniteName() {
         int groupSize = enemies.size();
         if (groupSize == 1) return enemies.get(0).getDefiniteName();
-        else return "the group of " + groupSize + " " + enemies.get(0).name + "s";
+        else return "the group of " + groupSize + " " + enemies.get(0).getSpecies() + "s";
     }
 
     @Override
