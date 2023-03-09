@@ -4,8 +4,8 @@ Make a game with a player.
 
 ## Tasks
 
-- [ ] Configure project so that a one-click build and launch works.
-  - [ ] Create class to provide an executable.
+- [x] Configure project so that a one-click build and launch works.
+  - [x] Create class to provide an executable.
 - [ ] Implement the player and the orc. Hint: you could make a class "Character", and create one of each in the main
   program.
   - [ ] The player is has 50 hitpoints
