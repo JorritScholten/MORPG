@@ -4,8 +4,10 @@ Make a game with a player.
 
 ## Tasks
 
+- [ ] Configure project so that a one-click build and launch works.
+  - [ ] Create class to provide an executable.
 - [ ] Implement the player and the orc. Hint: you could make a class "Character", and create one of each in the main
-  program
+  program.
   - [ ] The player is has 50 hitpoints
   - [ ] There is an orc, which has 20 hitpoints
 - [ ] We want them to be able to fight: we equip both of them with a weapon. Give the player a sword which does 1d6 (
