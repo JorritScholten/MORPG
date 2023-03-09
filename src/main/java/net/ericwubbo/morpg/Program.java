@@ -1,9 +1,12 @@
 package net.ericwubbo.morpg;
 
+import net.ericwubbo.morpg.species.Human;
+import net.ericwubbo.morpg.species.Orc;
+
 public class Program {
     public static void main(String[] args) {
-        Character player = new Character("Player", 50, new Weapon("sword", 6));
-        Character orc = new Character("orc", 20, new Weapon("axe", 3));
+        Being player = new Human("Player", 50, new Weapon("sword", 6));
+        Being orc = new Orc(20, new Weapon("axe", 3));
         do {
             if (player.isAlive()) player.hit(orc);
             if (orc.isAlive()) orc.hit(player);
